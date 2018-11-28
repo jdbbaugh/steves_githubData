@@ -4406,65 +4406,80 @@ const githubData = [
       }
     }
   ]
-  let counter = 0;
-  let pullCount = 0;
-  let pushCount = 0;
-  let deleteCount = 0;
-  let commentCount =0;
-  let createCount = 0;
-  for (let i = 0; i < githubData.length; i++) {
-    counter++
-    
-    let eventType = githubData[i].type;
-    console.log(eventType);
-    
-    if (eventType === 'PullRequestEvent') {
-      pullCount++
-      
-    } else if (eventType === 'PushEvent') {
-      pushCount++
-      
-    } else if (eventType === 'DeleteEvent') {
-      deleteCount++ 
-      
-    } else if (eventType === 'IssueCommentEvent') {
-      commentCount++
-    } else if (eventType === 'CreateEvent') {
-      createCount++
-    }
-
-  };
-
-    //outputs commit types
-  // console.log(pullCount);
-  // console.log(pushCount);
-  // console.log(deleteCount);
-  // console.log(commentCount);
-  // console.log(createCount);
-
-  //loop to find contributing github users
-  for (let ii = 0; ii < githubData.length; ii++) {
-    let findCommits = githubData[ii].payload.commits;
-    
-    console.log(findCommits.length);
-    for (let jj = 0; jj < findCommits.length; jj++) {
-      let author = findCommits[jj].author.name
-      console.log(author)
-    }
-  }
   
+  console.log(githubData[1].payload.commits);
+
+//  QUESTION 1 How many total commits were made in all of Steve's events?   ANSWER = 9
+let totalCommits = 0;
+
+    for (let i = 0; i < githubData.length; i++) {
+      let commitFinder = githubData[i].payload.commits
+      // console.log(commitFinder.length)  OUTPUT 1, 6, 2
+    };
+
+    
+    // QUESTION 2 How many of each event type are there? (PullRequestEvent, PushEvent, etc) ANSWER = PushEvent11, PullRequetEvent7, DeleteEvent4, CreateEvent4, Issue4
+    let pushCount = 0;
+    let pullCount = 0;
+    let deleteCount = 0;
+    let createCount = 0;
+    let issueCount = 0;
+    
+    for (let i = 0; i < githubData.length; i++) {
+      let eventType = githubData[i].type;
+      if(eventType === "PushEvent") {
+        pushCount++;
+        console.log(pushCount)
+      } else if (eventType === "PullRequestEvent") {
+        pullCount++;
+        console.log(pullCount)
+      } else if (eventType === 'DeleteEvent') {
+        deleteCount++;
+        console.log(deleteCount)
+      } else if (eventType === 'CreateEvent') {
+        createCount++;
+        console.log(createCount)
+      } else if (eventType === 'IssueCommentEvent') {
+        issueCount++;
+        console.log(issueCount);
+      }
+      
+      //list of events
+      console.log(eventType)
+    };
+
+    // QUESTION 3 List all Github users who submitted a pull request that was approved by Steve. ANSWER = MEG DUCHARME, CHASHEW ROSE
+//-------------------------------------------START-------
+    // let userList = []
+//     for (let i = 0; i < githubData.length; i++) {
+//       let commitFinder = githubData[i].payload.commits
+//       for (let j = 0; j < commitFinder.length; j++) {
+//         let contributer = commitFinder[j].author.name;
+//         console.log(contributer);
+//         if (contributer !== 'Steve Brownlee') {
+//           userList = contributer;
+//           console.log(userList)
+//         }
+//       }
+//     }
+    
+// ----------------------------------------END-------------------------
 
 
+    // QUESTION 4 List all repositories on which Steve had an event, and show how many events were on each one.
+      // I DUNNO
+   
+   
+      //QUESTON 5 Which event had the most number of commits?
+      console.log(githubData[1].payload.commits.length);
+      // based off question 1 i think... event number 2... it has 6??
 
-
-
-
-
-// How many total commits were made in all of Steve's events?  30?
-// How many of each event type are there? (PullRequestEvent, PushEvent, etc)  7pulls 11push 4delete 4comment 4create
-// List all Github users who submitted a pull request that was approved by Steve. MegDucharme CashewRose SteveBrownlee
-// List all repositories on which Steve had an event, and show how many events were on each one.
-// Which event had the most number of commits?
-// Which programming langugages were affected by Steve's events?
-// What programming language was the most affected by Steve's events?
+      // QUESTION 6 Which programming langugages were affected by Steve's events?  ANSWER PYTHON/JAVASCRIPT
+      for (let i = 0; i < githubData.length; i++) {
+      console.log(githubData[i].payload.pull_request);
+      if(githubData[i].payload.pull_request !== undefined){
+        console.log(githubData[i].payload.pull_request.head.repo.language);
+      }
+    } 
+    
   
