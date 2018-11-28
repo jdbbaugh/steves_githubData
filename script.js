@@ -4467,7 +4467,29 @@ let totalCommits = 0;
 
 
     // QUESTION 4 List all repositories on which Steve had an event, and show how many events were on each one.
-      // I DUNNO
+    // ANSWER = nashville-software-school/client-side-mastery  23times, nashville-software-school/bangazon-llc 4times, stevebrownlee/vps-setup 1time, nss-day-cohort-27/brenda-snack-cake-store 2times
+      
+      let clientSide = 0;
+      let bangAzon = 0;
+      let vpsSetup = 0;
+      let snackCake = 0;
+      for(let i = 0; i < githubData.length; i++) {
+        let repoShiz = githubData[i].repo.name;
+        if (repoShiz === 'nashville-software-school/client-side-mastery') {
+          clientSide++;
+          console.log(clientSide)
+        } else if (repoShiz === "nashville-software-school/bangazon-llc") {
+          bangAzon++;
+          console.log(bangAzon);
+        } else if (repoShiz === 'stevebrownlee/vps-setup') {
+          vpsSetup++;
+          console.log(vpsSetup);
+        } else if (repoShiz === "nss-day-cohort-27/brenda-snack-cake-store") {
+          snackCake++;
+          console.log(snackCake);
+        }
+        console.log(repoShiz)
+      };
    
    
       //QUESTON 5 Which event had the most number of commits?
@@ -4482,4 +4504,5 @@ let totalCommits = 0;
       }
     } 
     
-  
+      // QUESTION 7 What programming language was the most affected by Steve's events? 
+      // based on question 6 i think the answer is JavaScript  
